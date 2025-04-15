@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oxer-app
+  namespace: oxer
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      name: my-app-oxer
+  template:
+    metadata:
+      labels:
+        name: my-app-oxer
+    spec:
+      containers:
+      - name: oxer
+        image: remyars/oxer:latest
+        ports:
+        - containerPort: 80
+          protocol: TCP

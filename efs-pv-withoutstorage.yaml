@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: efs-pv
+spec:
+  capacity:
+    storage: 5Gi  # Size of the volume
+  accessModes:
+    - ReadWriteMany  # EFS supports ReadWriteMany (RWX) access mode
+  persistentVolumeReclaimPolicy: Retain  # Retain the volume even if PVC is deleted
+  storageClassName: ""  # No StorageClass specified, can be left empty
+  mountOptions:
+    - tls  # Optional: Use TLS for secure connections to EFS
+  nfs:
+    path: /  # Path to the root directory of the EFS file system
+    server: fs-xxxxxx.efs.us-west-2.amazonaws.com  # Your EFS DNS name

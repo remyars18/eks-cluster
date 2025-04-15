@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green-app
+  namespace: ingress-nginx
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      name: my-app
+  template:
+    metadata:
+      labels:
+        name: my-app
+    spec:
+      containers:
+      - name: green
+        image: remyars/green-app:latest
+        ports:
+        - containerPort: 80
+          protocol: TCP
